@@ -17,7 +17,7 @@ const checkLetter = (letter) => {
     triesCounter.innerText = triesLeft;
 
     const hangmanImg = document.getElementById("hangman-img");
-    hangmanImg.src = `images/hg-${10 - triesLeft}.png`;
+    hangmanImg.src = "images/hg-${10 - triesLeft}.png";
     if (triesLeft === 0) {
       stopGame("lose");
     }
