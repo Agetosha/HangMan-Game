@@ -35,12 +35,7 @@ const checkLetter = (letter) => {
           stopGame("win");
         }
         const letterWrapper = document.getElementById(`letter-${i}`);
-        if (wordArray.length > 14) {
-          letterWrapper.classList.add("letter", "long-word");
-          if (wordArray.length > 21) {
-            letterWrapper.classList.add("longlong-word");
-          }
-        }
+        letterWrapper.classList.add("letter");
         letterWrapper.innerText = inputLetter.toUpperCase();
       }
     });
@@ -51,20 +46,12 @@ const createPlaceholdersHTML = () => {
   const word = sessionStorage.getItem("wordToGuess");
   const wordArray = Array.from(word);
 
-  let wrapperClass = "placeholders-wrapper";
-  if (wordArray.length > 14) {
-    wrapperClass = "placeholders-wrapper long-word";
-    if (wordArray.length > 21) {
-      wrapperClass = "placeholders-wrapper longlong-word";
-    }
-  }
-
   const placeholdersHTML = wordArray.reduce(
     (acc, curr, i) => acc + `<h1 id="letter-${i}" class="letter">_</h1>`,
     ""
   );
 
-  return `<div id="placeholders" class="${wrapperClass}">${placeholdersHTML}</div>`;
+  return `<div id="placeholders" class="placeholders-wrapper">${placeholdersHTML}</div>`;
 };
 
 const createHangmanImg = () => {
