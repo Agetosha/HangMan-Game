@@ -1,10 +1,13 @@
 import { WORDS, KEYBOARD_LETTERS } from "./consts";
 
-const gameDiv = document.getElementById("game");
-const logoH1 = document.getElementById("logo");
+let gameDiv, logoH1, triesLeft, winCount;
 
-let triesLeft = 10;
-let winCount = 0;
+document.addEventListener("DOMContentLoaded", () => {
+  gameDiv = document.getElementById("game");
+  logoH1 = document.getElementById("logo");
+  triesLeft = 10;
+  winCount = 0;
+});
 
 const checkLetter = (letter) => {
   const word = sessionStorage.getItem("wordToGuess");
@@ -17,21 +20,28 @@ const checkLetter = (letter) => {
     triesCounter.innerText = triesLeft;
 
     const hangmanImg = document.getElementById("hangman-img");
-    hangmanImg.src = `/images/hg-${10 - triesLeft}.png`;
+    hangmanImg.src = `images/hg-${10 - triesLeft}.png`;
     if (triesLeft === 0) {
       stopGame("lose");
     }
   } else {
     //буква есть
     const wordArray = Array.from(word);
+    let wrapperClassLetter = "letter";
     wordArray.forEach((el, i) => {
       if (el === inputLetter) {
         winCount += 1;
         if (winCount === wordArray.length) {
           stopGame("win");
         }
-        document.getElementById(`letter-${i}`).innerText =
-          inputLetter.toUpperCase();
+        const letterWrapper = document.getElementById(`letter-${i}`);
+        if (wordArray.length > 14) {
+          letterWrapper.classList.add("letter", "long-word");
+          if (wordArray.length > 21) {
+            letterWrapper.classList.add("longlong-word");
+          }
+        }
+        letterWrapper.innerText = inputLetter.toUpperCase();
       }
     });
   }
@@ -40,16 +50,26 @@ const checkLetter = (letter) => {
 const createPlaceholdersHTML = () => {
   const word = sessionStorage.getItem("wordToGuess");
   const wordArray = Array.from(word);
+
+  let wrapperClass = "placeholders-wrapper";
+  if (wordArray.length > 14) {
+    wrapperClass = "placeholders-wrapper long-word";
+    if (wordArray.length > 21) {
+      wrapperClass = "placeholders-wrapper longlong-word";
+    }
+  }
+
   const placeholdersHTML = wordArray.reduce(
     (acc, curr, i) => acc + `<h1 id="letter-${i}" class="letter">_</h1>`,
     ""
   );
-  return `<div id="placeholders" class="placeholders-wrapper">${placeholdersHTML}</div>`;
+
+  return `<div id="placeholders" class="${wrapperClass}">${placeholdersHTML}</div>`;
 };
 
 const createHangmanImg = () => {
   const image = document.createElement("img");
-  image.src = "/images/hg-0.png";
+  image.src = "images/hg-0.png";
   image.alt = "hangman image";
   image.classList.add("hangman-img");
   image.id = "hangman-img";

@@ -32,11 +32,11 @@
 
 @layer components {
   #app {
-    @apply h-screen flex flex-col justify-center items-center dark:text-white dark:bg-zinc-800;
+    @apply h-screen max-w-full px-3 flex flex-col justify-center items-center dark:text-white dark:bg-zinc-800 ;
   }
 
   .mainText {
-    @apply text-2xl sm:text-4xl md:text-5xl font-bold text-center;
+    @apply text-2xl flex flex-col sm:text-4xl md:text-5xl font-bold text-center;
   }
 
   #game {
@@ -48,7 +48,23 @@
   }
 
   .placeholders-wrapper {
-    @apply flex flex-row gap-2;
+    @apply flex flex-row gap-1 mx-3 max-w-full;
+  }
+  
+  .letter {
+    @apply mx-1 text-3xl font-medium;
+  }
+
+  .long-word .letter {
+    @apply text-sm sm:text-2xl md:text-2xl;
+  }
+
+  .longlong-word .letter {
+    @apply text-sm sm:text-xl md:text-2xl;
+  }
+
+  #header {
+    @apply flex flex-row justify-between items-center w-full bg-white;
   }
 
   .logo {
@@ -56,7 +72,7 @@
   }
 
   .logo-sm {
-    @apply text-xl;
+    @apply text-xl absolute float-right top-11;
   }
 
   .button-primary {
@@ -69,12 +85,10 @@
     @apply border border-black rounded-md hover:bg-slate-100 dark:border-white dark:hover:bg-zinc-500;
   }
 
-  .letter {
-    @apply mx-2 text-4xl font-medium;
-  }
+
 
   .keyboard {
-    @apply max-w-2xl mt-5 flex flex-wrap justify-center;
+    @apply max-w-2xl mt-5 flex flex-wrap justify-center mx-2;
   }
 
   .keyboard-button {
@@ -82,6 +96,6 @@
   }
   
   .hangman-img {
-    @apply w-32 h-32 sm:w-60 sm:h-60;
+    @apply mt-5 w-32 h-32 sm:w-60 sm:h-60;
   }
 }

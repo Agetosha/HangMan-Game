@@ -1,3 +1,5 @@
+//не добовлять слова больше 18 символов
+
 export const WORDS = [
   "сын",
   "информация",
@@ -15,6 +17,5 @@ export const WORDS = [
   "штат",
   "оборудование",
 ];
-// export const WORDS = ["абв"];
 
 export const KEYBOARD_LETTERS = Array.from("АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ");
