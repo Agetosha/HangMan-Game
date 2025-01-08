@@ -27,7 +27,7 @@ const checkLetter = (letter) => {
   } else {
     //буква есть
     const wordArray = Array.from(word);
-    let wrapperClassLetter = "letter";
+    // let wrapperClassLetter = "letter";
     wordArray.forEach((el, i) => {
       if (el === inputLetter) {
         winCount += 1;

@@ -52,7 +52,7 @@
   }
   
   .letter {
-    @apply mx-1 text-3xl font-medium;
+    @apply mx-1 text-4xl font-medium;
   }
 
   .long-word .letter {
